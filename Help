@@ -1,8 +1,6 @@
 -- DrunixHub (K to toggle mouse look)
-local player = game.Players.LocalPlayer
 local camera = workspace.CurrentCamera
 local uis = game:GetService("UserInputService")
-
 local enabled = false
 local sensitivity = 0.005
 
@@ -24,9 +22,9 @@ game:GetService("RunService").RenderStepped:Connect(function()
     if enabled then
         local delta = uis:GetMouseDelta()
         if delta.X ~= 0 or delta.Y ~= 0 then
-            local rotationX = CFrame.Angles(0, -delta.X * sensitivity, 0)
-            local rotationY = CFrame.Angles(-delta.Y * sensitivity, 0, 0)
-            camera.CFrame = camera.CFrame * rotationX * rotationY
+            local rotX = CFrame.Angles(0, -delta.X * sensitivity, 0)
+            local rotY = CFrame.Angles(-delta.Y * sensitivity, 0, 0)
+            camera.CFrame = camera.CFrame * rotX * rotY
         end
     end
 end)
