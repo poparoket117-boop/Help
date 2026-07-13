@@ -1,0 +1,32 @@
+-- DrunixHub (K to toggle first-person scroll)
+local player = game.Players.LocalPlayer
+local camera = workspace.CurrentCamera
+local uis = game:GetService("UserInputService")
+
+local enabled = false
+local mouse = player:GetMouse()
+
+uis.InputBegan:Connect(function(input, processed)
+    if processed then return end
+    if input.KeyCode == Enum.KeyCode.K then
+        enabled = not enabled
+        if enabled then
+            camera.CameraType = Enum.CameraType.Scriptable
+            print("Scroll mode ON")
+        else
+            camera.CameraType = Enum.CameraType.Custom
+            print("Scroll mode OFF")
+        end
+    end
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    if enabled and camera.CameraType == Enum.CameraType.Scriptable then
+        local delta = uis:GetMouseDelta()
+        local sensitivity = 0.005
+        local newCFrame = camera.CFrame * CFrame.Angles(0, -delta.X * sensitivity, 0) * CFrame.Angles(-delta.Y * sensitivity, 0, 0)
+        camera.CFrame = newCFrame
+    end
+end)
+
+print("Press K to toggle first-person scroll mode.")
