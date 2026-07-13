@@ -1,4 +1,4 @@
--- DrunixHub (K to toggle first-person mouse look)
+-- DrunixHub (K to toggle mouse look for Block Strike)
 local camera = workspace.CurrentCamera
 local uis = game:GetService("UserInputService")
 local enabled = false
@@ -11,11 +11,11 @@ uis.InputBegan:Connect(function(input, processed)
         if enabled then
             uis.MouseBehavior = Enum.MouseBehavior.LockCenter
             uis.MouseIconEnabled = false
-            print("Mouse look ON")
+            print("Camera control ON")
         else
             uis.MouseBehavior = Enum.MouseBehavior.Default
             uis.MouseIconEnabled = true
-            print("Mouse look OFF")
+            print("Camera control OFF")
         end
     end
 end)
@@ -31,4 +31,4 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
 end)
 
-print("Press K to toggle first-person mouse look.")
+print("Press K to toggle camera control.")
