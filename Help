@@ -1,4 +1,4 @@
--- DrunixHub (K to scroll)
+-- DrunixHub (K to toggle scroll)
 local camera = workspace.CurrentCamera
 local uis = game:GetService("UserInputService")
 local enabled = false
@@ -7,7 +7,6 @@ uis.InputBegan:Connect(function(input, processed)
     if processed then return end
     if input.KeyCode == Enum.KeyCode.K then
         enabled = not enabled
-        camera.CameraType = enabled and Enum.CameraType.Scriptable or Enum.CameraType.Custom
         print(enabled and "Scroll ON" or "Scroll OFF")
     end
 end)
@@ -16,6 +15,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     if enabled then
         local delta = uis:GetMouseDelta()
         local speed = 0.005
+        -- Вращаем камеру относительно её текущего положения
         camera.CFrame = camera.CFrame * CFrame.Angles(0, -delta.X * speed, 0) * CFrame.Angles(-delta.Y * speed, 0, 0)
     end
 end)
