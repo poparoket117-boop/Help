@@ -1,27 +1,19 @@
--- DrunixHub (K to toggle scroll)
-local player = game.Players.LocalPlayer
+-- DrunixHub (K to scroll)
 local camera = workspace.CurrentCamera
 local uis = game:GetService("UserInputService")
-
-local scrolling = false
-local mouse = player:GetMouse()
+local enabled = false
 
 uis.InputBegan:Connect(function(input, processed)
     if processed then return end
     if input.KeyCode == Enum.KeyCode.K then
-        scrolling = not scrolling
-        if scrolling then
-            camera.CameraType = Enum.CameraType.Scriptable
-            print("Scroll ON")
-        else
-            camera.CameraType = Enum.CameraType.Custom
-            print("Scroll OFF")
-        end
+        enabled = not enabled
+        camera.CameraType = enabled and Enum.CameraType.Scriptable or Enum.CameraType.Custom
+        print(enabled and "Scroll ON" or "Scroll OFF")
     end
 end)
 
 game:GetService("RunService").RenderStepped:Connect(function()
-    if scrolling then
+    if enabled then
         local delta = uis:GetMouseDelta()
         local speed = 0.005
         camera.CFrame = camera.CFrame * CFrame.Angles(0, -delta.X * speed, 0) * CFrame.Angles(-delta.Y * speed, 0, 0)
