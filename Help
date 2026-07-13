@@ -8,13 +8,7 @@ uis.InputBegan:Connect(function(input, processed)
     if processed then return end
     if input.KeyCode == Enum.KeyCode.K then
         enabled = not enabled
-        if enabled then
-            camera.CameraType = Enum.CameraType.Scriptable
-            print("Mouse look ON")
-        else
-            camera.CameraType = Enum.CameraType.Custom
-            print("Mouse look OFF")
-        end
+        print(enabled and "Mouse look ON" or "Mouse look OFF")
     end
 end)
 
