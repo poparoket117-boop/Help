@@ -1,4 +1,4 @@
--- DrunixHub (K to toggle mouse look)
+-- DrunixHub (K to toggle first-person mouse look)
 local camera = workspace.CurrentCamera
 local uis = game:GetService("UserInputService")
 local enabled = false
@@ -8,7 +8,15 @@ uis.InputBegan:Connect(function(input, processed)
     if processed then return end
     if input.KeyCode == Enum.KeyCode.K then
         enabled = not enabled
-        print(enabled and "Mouse look ON" or "Mouse look OFF")
+        if enabled then
+            uis.MouseBehavior = Enum.MouseBehavior.LockCenter
+            uis.MouseIconEnabled = false
+            print("Mouse look ON")
+        else
+            uis.MouseBehavior = Enum.MouseBehavior.Default
+            uis.MouseIconEnabled = true
+            print("Mouse look OFF")
+        end
     end
 end)
 
@@ -23,4 +31,4 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
 end)
 
-print("Press K to toggle mouse look.")
+print("Press K to toggle first-person mouse look.")
