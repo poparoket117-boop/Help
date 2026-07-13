@@ -1,4 +1,4 @@
--- DrunixHub (K to toggle mouse look for Block Strike)
+-- DrunixHub (Block Strike camera control)
 local camera = workspace.CurrentCamera
 local uis = game:GetService("UserInputService")
 local enabled = false
@@ -6,7 +6,7 @@ local sensitivity = 0.005
 
 uis.InputBegan:Connect(function(input, processed)
     if processed then return end
-    if input.KeyCode == Enum.KeyCode.K then
+    if input.KeyCode == Enum.KeyCode.Seven then
         enabled = not enabled
         if enabled then
             uis.MouseBehavior = Enum.MouseBehavior.LockCenter
@@ -31,4 +31,4 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
 end)
 
-print("Press K to toggle camera control.")
+print("Press 7 to toggle camera control.")
