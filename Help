@@ -15,7 +15,6 @@ game:GetService("RunService").RenderStepped:Connect(function()
     if enabled then
         local delta = uis:GetMouseDelta()
         local speed = 0.005
-        -- Вращаем камеру относительно её текущего положения
         camera.CFrame = camera.CFrame * CFrame.Angles(0, -delta.X * speed, 0) * CFrame.Angles(-delta.Y * speed, 0, 0)
     end
 end)
